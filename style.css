@@ -1,0 +1,9 @@
+#nav {
+    margin-left: 16px;
+}
+
+.dados {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
