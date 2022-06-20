@@ -10,8 +10,6 @@ class Dice {
     }
 }
 
-$(".spinner-border").hide();
-
 //Estanciando dados
 var dado1 = new Dice(6);
 var dado2 = new Dice(6);
@@ -26,17 +24,10 @@ var val3 = dado3.Roll();
 var val4 = dado4.Roll();
 var val5 = dado5.Roll();
 
+//Gerar caminho para imagem dos dados
 function generateImgDado(valorDoDado) {
     return "img/dado-" + valorDoDado + ".png";
 }
-
-//checkbox limit 2
-$('input[type=checkbox]').on('change', function(e) {
-    if ($('input[type=checkbox]:checked').length > 2) {
-        $(this).prop('checked', false);
-        alert("Selecione apenas 2 dados!");
-    }
-});
 
 //array com o valor de cada dado rolado
 var arr = [val1, val2, val3, val4, val5];
@@ -112,7 +103,11 @@ if (filtered1 > 1 || filtered2 > 1 || filtered3 > 1 || filtered4 > 1 || filtered
     dupla = true;
 }
 
+//iniciar com checkbox desabilitados
+$("input[type=checkbox]").attr("disabled", true);
+
 function playdice() {
+    console.log($("input[type=checkbox]").prop("checked"));
     $("#botao-jogar").attr("disabled", true);
     $(".btn .fa-spinner").show();
     $(".btn .btn-text").html("Jogando dados...");
@@ -154,6 +149,19 @@ function playdice() {
         $("#dado-img5").removeClass("animate__shakeX");
         $(".btn .fa-spinner").hide();
         $(".btn .btn-text").html("Jogar novamente");
-        $("#botao-jogar").attr("disabled", false);
+        $("#botao-jogar").attr("disabled", false); //habilitar botão Jogar dados
+        $("input[type=checkbox]").attr("disabled", false); //habilitar checkbox
+        $("input[type=checkbox]").on("change", function(e) {
+            if ($("input[type=checkbox]:checked").length > 2) { //checkbox limit 2
+                $(this).prop("checked", false);
+                alert("Selecione apenas 2 dados!");
+            } else {
+                $(this).parent().toggleClass("border-5 border-primary");
+            }
+        });
     }, "3500");
+}
+
+function getSelectDices() {
+
 }

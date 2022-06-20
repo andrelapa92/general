@@ -6,4 +6,17 @@
     width: 100px;
     height: 100px;
     cursor: pointer;
+    border-width: 3px;
+    border-color: blue;
+}
+
+.fieldlabel {
+    position: relative;
+}
+
+.fieldlabel .chkbox {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    opacity: 0;
 }
