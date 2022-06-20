@@ -9,6 +9,9 @@ class Dice {
         return Math.floor((Math.random() * this.faces) + 1);
     }
 }
+
+$(".spinner-border").hide();
+
 //Estanciando dados
 var dado1 = new Dice(6);
 var dado2 = new Dice(6);
@@ -109,39 +112,34 @@ if (filtered1 > 1 || filtered2 > 1 || filtered3 > 1 || filtered4 > 1 || filtered
     dupla = true;
 }
 
-const botaoJogar = document.getElementById("botao-jogar");
-const img1 = document.getElementById("dado-img1");
-const img2 = document.getElementById("dado-img2");
-const img3 = document.getElementById("dado-img3");
-const img4 = document.getElementById("dado-img4");
-const img5 = document.getElementById("dado-img5");
-
 function playdice() {
-    botaoJogar.disabled = true;
+    $("#botao-jogar").attr("disabled", true);
+    $(".btn .fa-spinner").show();
+    $(".btn .btn-text").html("Jogando dados...");
     setTimeout(() => {
-        img1.classList.add("animate__shakeX");
+        $("#dado-img1").addClass("animate__shakeX");
         setTimeout(() => {
-            img1.src = generateImgDado(val1);
+            $("#dado-img1").attr("src", generateImgDado(val1))
         }, "1000");
         setTimeout(() => {
-            img2.classList.add("animate__shakeX");
+            $("#dado-img2").addClass("animate__shakeX");
             setTimeout(() => {
-                img2.src = generateImgDado(val2);
+                $("#dado-img2").attr("src", generateImgDado(val2));
             }, "1000");
             setTimeout(() => {
-                img3.classList.add("animate__shakeX");
+                $("#dado-img3").addClass("animate__shakeX");
                 setTimeout(() => {
-                    img3.src = generateImgDado(val3);
+                    $("#dado-img3").attr("src", generateImgDado(val3));
                 }, "1000");
                 setTimeout(() => {
-                    img4.classList.add("animate__shakeX");
+                    $("#dado-img4").addClass("animate__shakeX");
                     setTimeout(() => {
-                        img4.src = generateImgDado(val4);
+                        $("#dado-img4").attr("src", generateImgDado(val4));
                     }, "1000");
                     setTimeout(() => {
-                        img5.classList.add("animate__shakeX");
+                        $("#dado-img5").addClass("animate__shakeX");
                         setTimeout(() => {
-                            img5.src = generateImgDado(val5);
+                            $("#dado-img5").attr("src", generateImgDado(val5));
                         }, "1000");
                     }, "500");
                 }, "500");
@@ -149,10 +147,13 @@ function playdice() {
         }, "500");
     }, "500");
     setTimeout(() => {
-        img1.classList.remove("animate__shakeX");
-        img2.classList.remove("animate__shakeX");
-        img3.classList.remove("animate__shakeX");
-        img4.classList.remove("animate__shakeX");
-        img5.classList.remove("animate__shakeX");
+        $("#dado-img1").removeClass("animate__shakeX");
+        $("#dado-img2").removeClass("animate__shakeX");
+        $("#dado-img3").removeClass("animate__shakeX");
+        $("#dado-img4").removeClass("animate__shakeX");
+        $("#dado-img5").removeClass("animate__shakeX");
+        $(".btn .fa-spinner").hide();
+        $(".btn .btn-text").html("Jogar novamente");
+        $("#botao-jogar").attr("disabled", false);
     }, "3500");
 }
