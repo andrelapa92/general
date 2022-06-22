@@ -48,7 +48,7 @@ var filtered6 = notZero(6);
 //filtrando array de 1 para valores diferentes nos dados
 var arr1 = [filtered1, filtered2, filtered3, filtered4, filtered5, filtered6];
 var filteredArr = [];
-for (const el of arr1) {
+for (let el of arr1) {
     if (el !== undefined) {
         filteredArr.push(el);
     }
@@ -104,43 +104,234 @@ if (filtered1 > 1 || filtered2 > 1 || filtered3 > 1 || filtered4 > 1 || filtered
 }
 
 //iniciar com checkbox desabilitados
-$("input[type=checkbox]").attr("disabled", true);
+$("input[type=checkbox]").prop("disabled", true);
+$("input[type=checkbox]").hide();
+
+var selectedDices = Array.of(5);
+var selectedDiceArr = [];
+var diceRollChance = 1;
+//console.log(selectedDices);
+$("#text-instructions").html("Jogue os dados.");
 
 function playdice() {
-    console.log($("input[type=checkbox]").prop("checked"));
-    $("#botao-jogar").attr("disabled", true);
+    selectedDiceArr = [];
+    selectedDices[0] = $("input[type=checkbox]")[0].checked;
+    selectedDices[1] = $("input[type=checkbox]")[1].checked;
+    selectedDices[2] = $("input[type=checkbox]")[2].checked;
+    selectedDices[3] = $("input[type=checkbox]")[3].checked;
+    selectedDices[4] = $("input[type=checkbox]")[4].checked;
+    for (let i = 0; i < selectedDices.length; i++) {
+        if (($("input[type=checkbox]")[i].checked) === true) {
+            selectedDiceArr.push(i);
+        }
+    }
+    if (diceRollChance === 1) {
+        setTimeout(() => {
+            $("#dado-img1").addClass("animate__shakeX");
+            setTimeout(() => {
+                $("#dado-img1").prop("src", generateImgDado(val1))
+            }, "1000");
+            setTimeout(() => {
+                $("#dado-img2").addClass("animate__shakeX");
+                setTimeout(() => {
+                    $("#dado-img2").prop("src", generateImgDado(val2));
+                }, "1000");
+                setTimeout(() => {
+                    $("#dado-img3").addClass("animate__shakeX");
+                    setTimeout(() => {
+                        $("#dado-img3").prop("src", generateImgDado(val3));
+                    }, "1000");
+                    setTimeout(() => {
+                        $("#dado-img4").addClass("animate__shakeX");
+                        setTimeout(() => {
+                            $("#dado-img4").prop("src", generateImgDado(val4));
+                        }, "1000");
+                        setTimeout(() => {
+                            $("#dado-img5").addClass("animate__shakeX");
+                            setTimeout(() => {
+                                $("#dado-img5").prop("src", generateImgDado(val5));
+                            }, "1000");
+                        }, "500");
+                    }, "500");
+                }, "500");
+            }, "500");
+        }, "500");
+    } else if (diceRollChance === 2) {
+        switch (selectedDiceArr[0]) {
+            case 0:
+                val1 = dado1.Roll();
+                setTimeout(() => {
+                    $("#dado-img1").addClass("animate__shakeX");
+                    setTimeout(() => {
+                        $("#dado-img1").prop("src", generateImgDado(val1))
+                    }, "1000");
+                }, "500");
+                break;
+            case 1:
+                val2 = dado2.Roll();
+                setTimeout(() => {
+                    $("#dado-img2").addClass("animate__shakeX");
+                    setTimeout(() => {
+                        $("#dado-img2").prop("src", generateImgDado(val2))
+                    }, "1000");
+                }, "500");
+                break;
+            case 2:
+                val3 = dado3.Roll();
+                setTimeout(() => {
+                    $("#dado-img3").addClass("animate__shakeX");
+                    setTimeout(() => {
+                        $("#dado-img3").prop("src", generateImgDado(val3))
+                    }, "1000");
+                }, "500");
+                break;
+            case 3:
+                val4 = dado4.Roll();
+                setTimeout(() => {
+                    $("#dado-img4").addClass("animate__shakeX");
+                    setTimeout(() => {
+                        $("#dado-img4").prop("src", generateImgDado(val4))
+                    }, "1000");
+                }, "500");
+                break;
+            case 4:
+                val5 = dado5.Roll();
+                setTimeout(() => {
+                    $("#dado-img5").addClass("animate__shakeX");
+                    setTimeout(() => {
+                        $("#dado-img5").prop("src", generateImgDado(val5))
+                    }, "1000");
+                }, "500");
+                break;
+            default:
+                break;
+        }
+        switch (selectedDiceArr[1]) {
+            case 0:
+                val1 = dado1.Roll();
+                setTimeout(() => {
+                    $("#dado-img1").addClass("animate__shakeX");
+                    setTimeout(() => {
+                        $("#dado-img1").prop("src", generateImgDado(val1))
+                    }, "1000");
+                }, "500");
+                break;
+            case 1:
+                val2 = dado2.Roll();
+                setTimeout(() => {
+                    $("#dado-img2").addClass("animate__shakeX");
+                    setTimeout(() => {
+                        $("#dado-img2").prop("src", generateImgDado(val2))
+                    }, "1000");
+                }, "500");
+                break;
+            case 2:
+                val3 = dado3.Roll();
+                setTimeout(() => {
+                    $("#dado-img3").addClass("animate__shakeX");
+                    setTimeout(() => {
+                        $("#dado-img3").prop("src", generateImgDado(val3))
+                    }, "1000");
+                }, "500");
+                break;
+            case 3:
+                val4 = dado4.Roll();
+                setTimeout(() => {
+                    $("#dado-img4").addClass("animate__shakeX");
+                    setTimeout(() => {
+                        $("#dado-img4").prop("src", generateImgDado(val4))
+                    }, "1000");
+                }, "500");
+                break;
+            case 4:
+                val5 = dado5.Roll();
+                setTimeout(() => {
+                    $("#dado-img5").addClass("animate__shakeX");
+                    setTimeout(() => {
+                        $("#dado-img5").prop("src", generateImgDado(val5))
+                    }, "1000");
+                }, "500");
+                break;
+            default:
+                break;
+        }
+    } else if (diceRollChance === 3) {
+        switch (selectedDiceArr[0]) {
+            case 0:
+                val1 = dado1.Roll();
+                break;
+            case 1:
+                val2 = dado2.Roll();
+                break;
+            case 2:
+                val3 = dado3.Roll();
+                break;
+            case 3:
+                val4 = dado4.Roll();
+                break;
+            case 4:
+                val5 = dado5.Roll();
+                break;
+            default:
+                break;
+        }
+        switch (selectedDiceArr[1]) {
+            case 0:
+                val1 = dado1.Roll();
+                break;
+            case 1:
+                val2 = dado2.Roll();
+                break;
+            case 2:
+                val3 = dado3.Roll();
+                break;
+            case 3:
+                val4 = dado4.Roll();
+                break;
+            case 4:
+                val5 = dado5.Roll();
+                break;
+            default:
+                break;
+        }
+    }
+    diceRollChance++;
+    //console.log(selectedDiceArr);
+    $("input[type=checkbox]").hide();
+    $("#botao-jogar").prop("disabled", true);
+    $("input[type=checkbox]").prop("disabled", true);
     $(".btn .fa-spinner").show();
     $(".btn .btn-text").html("Jogando dados...");
-    setTimeout(() => {
+    /*setTimeout(() => {
         $("#dado-img1").addClass("animate__shakeX");
         setTimeout(() => {
-            $("#dado-img1").attr("src", generateImgDado(val1))
+            $("#dado-img1").prop("src", generateImgDado(val1))
         }, "1000");
         setTimeout(() => {
             $("#dado-img2").addClass("animate__shakeX");
             setTimeout(() => {
-                $("#dado-img2").attr("src", generateImgDado(val2));
+                $("#dado-img2").prop("src", generateImgDado(val2));
             }, "1000");
             setTimeout(() => {
                 $("#dado-img3").addClass("animate__shakeX");
                 setTimeout(() => {
-                    $("#dado-img3").attr("src", generateImgDado(val3));
+                    $("#dado-img3").prop("src", generateImgDado(val3));
                 }, "1000");
                 setTimeout(() => {
                     $("#dado-img4").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img4").attr("src", generateImgDado(val4));
+                        $("#dado-img4").prop("src", generateImgDado(val4));
                     }, "1000");
                     setTimeout(() => {
                         $("#dado-img5").addClass("animate__shakeX");
                         setTimeout(() => {
-                            $("#dado-img5").attr("src", generateImgDado(val5));
+                            $("#dado-img5").prop("src", generateImgDado(val5));
                         }, "1000");
                     }, "500");
                 }, "500");
             }, "500");
         }, "500");
-    }, "500");
+    }, "500");*/
     setTimeout(() => {
         $("#dado-img1").removeClass("animate__shakeX");
         $("#dado-img2").removeClass("animate__shakeX");
@@ -148,20 +339,34 @@ function playdice() {
         $("#dado-img4").removeClass("animate__shakeX");
         $("#dado-img5").removeClass("animate__shakeX");
         $(".btn .fa-spinner").hide();
-        $(".btn .btn-text").html("Jogar novamente");
-        $("#botao-jogar").attr("disabled", false); //habilitar botão Jogar dados
-        $("input[type=checkbox]").attr("disabled", false); //habilitar checkbox
-        $("input[type=checkbox]").on("change", function(e) {
-            if ($("input[type=checkbox]:checked").length > 2) { //checkbox limit 2
-                $(this).prop("checked", false);
-                alert("Selecione apenas 2 dados!");
-            } else {
-                $(this).parent().toggleClass("border-5 border-primary");
-            }
-        });
+        if (diceRollChance === 2) {
+            $(".btn .btn-text").html("Segunda chance");
+            $("#text-instructions").html("Escolha até 2 dados para jogar novamente.");
+            $("#botao-jogar").prop("disabled", false); //habilitar botão Jogar dados
+            $("input[type=checkbox]").prop("disabled", false); //habilitar checkbox
+            $("input[type=checkbox]").show();
+        } else if (diceRollChance === 3) {
+            $(".btn .btn-text").html("Última chance");
+            $("#text-instructions").html("Escolha até 2 dados para jogar novamente.");
+            $("#botao-jogar").prop("disabled", false); //habilitar botão Jogar dados
+            $("input[type=checkbox]").prop("disabled", false); //habilitar checkbox
+            $("input[type=checkbox]").show();
+        } else {
+            $("#botao-jogar").prop("disabled", true);
+            $(".btn .btn-text").html("Jogadas esgotadas");
+            $("#text-instructions").html("Suas jogadas esgotaram. Selecione qual pontuação deseja marcar.");
+            $("input[type=checkbox]").hide();
+            $("input[type=checkbox]").prop("disabled", true);
+        }
     }, "3500");
-}
-
-function getSelectDices() {
-
+    $("input[type=checkbox]").on("change", function(e) {
+        if ($("input[type=checkbox]:checked").length > 2) { //checkbox limit 2
+            $(this).prop("checked", false);
+            alert("Selecione apenas 2 dados!");
+        } else if ($(this).prop('checked') === true) {
+            $(this).parent().addClass("border-5 border-primary");
+        } else if ($(this).prop('checked') === false) {
+            $(this).parent().removeClass("border-5 border-primary");
+        }
+    });
 }
