@@ -19,12 +19,12 @@
         </span>
     </nav>
     <div class="container">
-        <div class="card mt-3">
+        <div class="card mt-3 mb-3">
             <div class="card-header">
-                <h3>Tabela de pontuação</h3>
+                <h6 id="text-instructions"></h6>
             </div>
             <div class="card-body">
-                <div class="d-flex justify-content-around text-center">
+                <div id="blocos" class="d-flex justify-content-around text-center">
                     <label for="chkbox1" class="fieldlabel">
                         <div id="dado-1" class="border rounded dados d-flex justify-content-center align-items-center">
                             <input type="checkbox" id="chkbox1" name="dicecheck" class="chkbox">
@@ -56,7 +56,7 @@
                         </div>
                     </label>
                 </div>
-                <div class="text-center">
+                <div class="text-center mb-2">
                     <button id="botao-jogar" type="button" class="btn btn-lg btn-primary mt-3" onclick="playdice()">
                         <i class="fas fa-spinner fa-spin" style="display:none;"></i>
                         <span class="btn-text">Jogar dados</span>
@@ -64,7 +64,69 @@
                 </div>
             </div>
             <div class="card-footer">
-                <h6 id="text-instructions"></h6>
+                <h3 class="text-center">Tabela de pontuação</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Pontuação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td id="score1">3</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td id="score2">8</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td id="score3">6</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td id="score4">12</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td id="score5">20</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td id="score6">24</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Trinca</th>
+                            <td id="scoretrinca">20</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Quadra</th>
+                            <td id="scorequadra">30</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Full-house</th>
+                            <td id="scorefullhouse">40</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Sequência alta</th>
+                            <td id="scoreseqalta">40</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Sequência baixa</th>
+                            <td id="scoreseqbaixa">45</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">General</th>
+                            <td id="scoregeneral">60</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Jogada aleatória</th>
+                            <td id="scorealeatoria">20</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

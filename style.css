@@ -19,3 +19,12 @@
     left: 2px;
     top: 2px;
 }
+
+@media only screen and (max-width: 540px) {
+    #blocos {
+        display: inline-block !important;
+    }
+    .dados {
+        margin-top: 3px;
+    }
+}
