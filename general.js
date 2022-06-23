@@ -78,12 +78,50 @@ var diceRollChance = 1;
 //console.log(selectedDices);
 $("#text-instructions").html("Jogue os dados.");
 
+//CONDIÇÕES DE JOGADAS
+function checkScore() {
+    //Condição para General
+    if (val1 === val2 && val2 === val3 && val3 === val4 && val4 === val5) {
+        general = true;
+    } else { general = false }
+    //Condição para Full House
+    if (
+        (filtered1 === 2 || filtered2 === 2 || filtered3 === 2 || filtered4 === 2 || filtered5 === 2 || filtered6 === 2) && (filtered1 === 3 || filtered2 === 3 || filtered3 === 3 || filtered4 === 3 || filtered5 === 3 || filtered6 === 3)
+    ) {
+        fullHouse = true;
+    } else { fullHouse = false }
+    //Condição para Sequência Maior
+    if ((filteredArr.length === 5) && (Math.min(...arr) > 1)) {
+        seqB = true;
+    } else { seqB = false }
+    //Condição para Sequência Menor
+    if ((filteredArr.length === 5) && (Math.max(...arr) < 6)) {
+        seqA = true;
+    } else { seqA = false }
+    //Condição para Quadra
+    if (filtered1 > 3 || filtered2 > 3 || filtered3 > 3 || filtered4 > 3 || filtered5 > 3 || filtered6 > 3) {
+        quadra = true;
+    } else { quadra = false }
+    //Condição para Trinca
+    if (filtered1 > 2 || filtered2 > 2 || filtered3 > 2 || filtered4 > 2 || filtered5 > 2 || filtered6 > 2) {
+        trinca = true;
+    } else { trinca = false }
+    //Condição para Dupla
+    if (filtered1 > 1 || filtered2 > 1 || filtered3 > 1 || filtered4 > 1 || filtered5 > 1 || filtered6 > 1) {
+        dupla = true;
+    } else { dupla = false }
+}
+
+//pegar ID da linha e do texto da pontuação no HTML
 function selectScore(getRowId, getScoreTextId) {
     console.log(getRowId);
-    $("#" + getScoreTextId).html("Pontuar aqui");
+    if (dupla === true) {
+        $("#" + getScoreTextId).html("Pontuar aqui");
+    }
 }
 
 function playdice() {
+    checkScore();
     $("#dado-img1").removeClass("animate__shakeX");
     $("#dado-img2").removeClass("animate__shakeX");
     $("#dado-img3").removeClass("animate__shakeX");
@@ -364,46 +402,6 @@ function playdice() {
             $("input[type=checkbox]").prop("disabled", true);
             $(".btn .fa-spinner").hide();
             $("input[type=checkbox]").parent().removeClass("border-5 border-primary");
-
-            //CONDIÇÕES DE JOGADAS
-
-            //Condição para General
-            if (val1 === val2 && val2 === val3 && val3 === val4 && val4 === val5) {
-                console.log("GENERAL!!!!!!!");
-                general = true;
-            }
-            //Condição para Full House
-            if (
-                (filtered1 === 2 || filtered2 === 2 || filtered3 === 2 || filtered4 === 2 || filtered5 === 2 || filtered6 === 2) && (filtered1 === 3 || filtered2 === 3 || filtered3 === 3 || filtered4 === 3 || filtered5 === 3 || filtered6 === 3)
-            ) {
-                console.log("Full House!");
-                fullHouse = true;
-            }
-            //Condição para Sequência Maior
-            if ((filteredArr.length === 5) && (Math.min(...arr) > 1)) {
-                console.log("Sequência Maior!");
-                seqB = true;
-            }
-            //Condição para Sequência Menor
-            if ((filteredArr.length === 5) && (Math.max(...arr) < 6)) {
-                console.log("Sequência Menor!");
-                seqA = true;
-            }
-            //Condição para Quadra
-            if (filtered1 > 3 || filtered2 > 3 || filtered3 > 3 || filtered4 > 3 || filtered5 > 3 || filtered6 > 3) {
-                console.log("Quadra!");
-                quadra = true;
-            }
-            //Condição para Trinca
-            if (filtered1 > 2 || filtered2 > 2 || filtered3 > 2 || filtered4 > 2 || filtered5 > 2 || filtered6 > 2) {
-                console.log("Trinca!");
-                trinca = true;
-            }
-            //Condição para Dupla
-            if (filtered1 > 1 || filtered2 > 1 || filtered3 > 1 || filtered4 > 1 || filtered5 > 1 || filtered6 > 1) {
-                console.log("Dupla!");
-                dupla = true;
-            }
         }, "1500");
     }
     $("input[type=checkbox]").on("change", function(e) {

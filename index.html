@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Yahtzee - Dice Game</title>
+    <link rel="icon" type="image/x-icon" href="img/general.png">
 </head>
 
 <body>
@@ -62,10 +63,27 @@
                         <span class="btn-text">Jogar dados</span>
                     </button>
                 </div>
+                <div id="btnscore" class="text-center" hidden>
+                    <hr class="mb-2">
+                    <h3 class="text-center mb-3">Qual pontuação deseja marcar?</h3>
+                    <button class="btn btn-primary mb-1" hidden type="button">General</button>
+                    <button class="btn btn-primary mb-1" hidden type="button">Sequência baixa</button>
+                    <button class="btn btn-primary mb-1" hidden type="button">Sequência alta</button>
+                    <button class="btn btn-primary mb-1" hidden type="button">Full-house</button>
+                    <button class="btn btn-primary mb-1" hidden type="button">Quadra</button>
+                    <button class="btn btn-primary mb-1" hidden type="button">Trinca</button>
+                    <button class="btn btn-primary mb-1" hidden type="button">Dupla</button>
+                    <button class="btn btn-primary mb-1" hidden type="button">6</button>
+                    <button class="btn btn-primary mb-1" hidden type="button">5</button>
+                    <button class="btn btn-primary mb-1" hidden type="button">4</button>
+                    <button class="btn btn-primary mb-1" hidden type="button">3</button>
+                    <button class="btn btn-primary mb-1" hidden type="button">2</button>
+                    <button class="btn btn-primary mb-1" hidden type="button">1</button>
+                </div>
             </div>
-            <div class="card-footer">
-                <h3 class="text-center">Tabela de pontuação</h3>
-                <table class="table table-bordered">
+            <div class="card-footer text-center">
+                <h3>Tabela de pontuação</h3>
+                <table id="scoretable" class="table table-bordered">
                     <thead>
                         <tr>
                             <th scope="col"></th>
@@ -96,6 +114,10 @@
                         <tr id="scorerow6" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">6</th>
                             <td id="score6">24</td>
+                        </tr>
+                        <tr id="scorerowdupla" onclick="selectScore(this.id, this.children[1].id)">
+                            <th scope="row">Dupla</th>
+                            <td id="scoredupla">8</td>
                         </tr>
                         <tr id="scorerowtrinca" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">Trinca</th>
