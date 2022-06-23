@@ -78,8 +78,9 @@ var diceRollChance = 1;
 //console.log(selectedDices);
 $("#text-instructions").html("Jogue os dados.");
 
-function score() {
-
+function selectScore(getRowId, getScoreTextId) {
+    console.log(getRowId);
+    $("#" + getScoreTextId).html("Pontuar aqui");
 }
 
 function playdice() {

@@ -14,8 +14,8 @@
 
 <body>
     <nav class="navbar navbar-light bg-light">
-        <span id="nav" class="navbar-brand mb-0" href="#">
-            <img src="img/general.png" height="30" class="d-inline-block align-top" alt=""> Yahtzee - Dice Game
+        <span id="nav" class="navbar-brand mb-0">
+            <img src="img/general.png" height="30" class="d-inline-block align-top"> Yahtzee - Dice Game
         </span>
     </nav>
     <div class="container">
@@ -73,55 +73,55 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr id="scorerow1" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">1</th>
                             <td id="score1">3</td>
                         </tr>
-                        <tr>
+                        <tr id="scorerow2" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">2</th>
                             <td id="score2">8</td>
                         </tr>
-                        <tr>
+                        <tr id="scorerow3" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">3</th>
                             <td id="score3">6</td>
                         </tr>
-                        <tr>
+                        <tr id="scorerow4" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">4</th>
                             <td id="score4">12</td>
                         </tr>
-                        <tr>
+                        <tr id="scorerow5" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">5</th>
                             <td id="score5">20</td>
                         </tr>
-                        <tr>
+                        <tr id="scorerow6" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">6</th>
                             <td id="score6">24</td>
                         </tr>
-                        <tr>
+                        <tr id="scorerowtrinca" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">Trinca</th>
                             <td id="scoretrinca">20</td>
                         </tr>
-                        <tr>
+                        <tr id="scorerowquadra" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">Quadra</th>
                             <td id="scorequadra">30</td>
                         </tr>
-                        <tr>
+                        <tr id="scorerowfullhouse" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">Full-house</th>
                             <td id="scorefullhouse">40</td>
                         </tr>
-                        <tr>
+                        <tr id="scorerowseqalta" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">Sequência alta</th>
                             <td id="scoreseqalta">40</td>
                         </tr>
-                        <tr>
+                        <tr id="scorerowseqbaixa" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">Sequência baixa</th>
                             <td id="scoreseqbaixa">45</td>
                         </tr>
-                        <tr>
+                        <tr id="scorerowgeneral" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">General</th>
                             <td id="scoregeneral">60</td>
                         </tr>
-                        <tr>
+                        <tr id="scorerowaleatoria" onclick="selectScore(this.id, this.children[1].id)">
                             <th scope="row">Jogada aleatória</th>
                             <td id="scorealeatoria">20</td>
                         </tr>
