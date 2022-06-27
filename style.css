@@ -20,6 +20,19 @@
     top: 2px;
 }
 
+#scoretable .text-strike {
+    text-decoration: line-through;
+}
+
+.btn {
+    min-width: 50px;
+}
+
+#scorerowtotal {
+    font-weight: bold;
+    font-size: 22px;
+}
+
 @media only screen and (max-width: 540px) {
     #blocos {
         display: inline-block !important;

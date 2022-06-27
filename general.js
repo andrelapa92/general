@@ -46,88 +46,226 @@ var filtered5 = notZero(5);
 var filtered6 = notZero(6);
 
 //filtrando array de 1 para valores diferentes nos dados
+
 var arr1 = [filtered1, filtered2, filtered3, filtered4, filtered5, filtered6];
 var filteredArr = [];
-for (let el of arr1) {
-    if (el !== undefined) {
-        filteredArr.push(el);
+
+function filterDices() {
+    arr = [val1, val2, val3, val4, val5];
+    filtered1 = notZero(1);
+    filtered2 = notZero(2);
+    filtered3 = notZero(3);
+    filtered4 = notZero(4);
+    filtered5 = notZero(5);
+    filtered6 = notZero(6);
+    filteredArr = [];
+    for (let el of arr1) {
+        if (el !== undefined) {
+            filteredArr.push(el);
+        }
     }
 }
-//Início do jogo com pontuação vazia
-var num1 = false;
-var num2 = false;
-var num3 = false;
-var num4 = false;
-var num5 = false;
-var num6 = false;
-var dupla = false;
-var trinca = false;
-var quadra = false;
-var fullHouse = false;
-var seqA = false;
-var seqB = false;
-var general = false;
 
-//iniciar com checkbox desabilitados
-$("input[type=checkbox]").prop("disabled", true);
-$("input[type=checkbox]").hide();
-
-var selectedDices = Array.of(5);
-var selectedDiceArr = [];
 var diceRollChance = 1;
-//console.log(selectedDices);
-$("#text-instructions").html("Jogue os dados.");
 
-//CONDIÇÕES DE JOGADAS
-function checkScore() {
-    //Condição para General
-    if (val1 === val2 && val2 === val3 && val3 === val4 && val4 === val5) {
-        general = true;
-    } else { general = false }
-    //Condição para Full House
-    if (
-        (filtered1 === 2 || filtered2 === 2 || filtered3 === 2 || filtered4 === 2 || filtered5 === 2 || filtered6 === 2) && (filtered1 === 3 || filtered2 === 3 || filtered3 === 3 || filtered4 === 3 || filtered5 === 3 || filtered6 === 3)
-    ) {
-        fullHouse = true;
-    } else { fullHouse = false }
-    //Condição para Sequência Maior
-    if ((filteredArr.length === 5) && (Math.min(...arr) > 1)) {
-        seqB = true;
-    } else { seqB = false }
-    //Condição para Sequência Menor
-    if ((filteredArr.length === 5) && (Math.max(...arr) < 6)) {
-        seqA = true;
-    } else { seqA = false }
-    //Condição para Quadra
-    if (filtered1 > 3 || filtered2 > 3 || filtered3 > 3 || filtered4 > 3 || filtered5 > 3 || filtered6 > 3) {
-        quadra = true;
-    } else { quadra = false }
-    //Condição para Trinca
-    if (filtered1 > 2 || filtered2 > 2 || filtered3 > 2 || filtered4 > 2 || filtered5 > 2 || filtered6 > 2) {
-        trinca = true;
-    } else { trinca = false }
-    //Condição para Dupla
-    if (filtered1 > 1 || filtered2 > 1 || filtered3 > 1 || filtered4 > 1 || filtered5 > 1 || filtered6 > 1) {
-        dupla = true;
-    } else { dupla = false }
+//Iniciando com checkbox desabilitados
+function initGame() {
+    $("input[type=checkbox]").prop("disabled", true);
+    $("input[type=checkbox]").hide();
+    $("#btnscore").hide();
+    $("#btn-general").hide();
+    $("#btn-seqb").hide();
+    $("#btn-seqa").hide();
+    $("#btn-fullhouse").hide();
+    $("#btn-quadra").hide();
+    $("#btn-trinca").hide();
+    $("#btn-6").hide();
+    $("#btn-5").hide();
+    $("#btn-4").hide();
+    $("#btn-3").hide();
+    $("#btn-2").hide();
+    $("#btn-1").hide();
+    $("#btn-zero").hide();
+    $("#btnscore").hide();
+    $("#btnscorezero").hide();
+    $("#text-instructions").html("Jogue os dados.");
+    $(".btn .btn-text").html("Jogar dados");
+    $("#botao-jogar").prop("disabled", false);
+    $("#dado-img1").prop("src", "img/general.png");
+    $("#dado-img2").prop("src", "img/general.png");
+    $("#dado-img3").prop("src", "img/general.png");
+    $("#dado-img4").prop("src", "img/general.png");
+    $("#dado-img5").prop("src", "img/general.png");
+    diceRollChance = 1;
 }
-
-//pegar ID da linha e do texto da pontuação no HTML
-function selectScore(getRowId, getScoreTextId) {
-    console.log(getRowId);
-    if (dupla === true) {
-        $("#" + getScoreTextId).html("Pontuar aqui");
-    }
-}
-
-function playdice() {
-    checkScore();
+//Removendo as classes de animação para conseguir animar novamente depois
+function removeAnimations() {
     $("#dado-img1").removeClass("animate__shakeX");
     $("#dado-img2").removeClass("animate__shakeX");
     $("#dado-img3").removeClass("animate__shakeX");
     $("#dado-img4").removeClass("animate__shakeX");
     $("#dado-img5").removeClass("animate__shakeX");
+}
+
+initGame();
+
+var selectedDices = Array.of(5);
+var selectedDiceArr = [];
+
+function scoreZero() {
+    $("#btnscore").hide();
+    $("#btnscorezero").show();
+}
+
+function hideScoreBtns() {
+    $("#btnscore").hide();
+}
+
+function sumFiltered(f) {
+    let sumArr = Array.of(f, n);
+    for (let i = 0; i < f; i++) {
+        let sum = 0;
+        sumArr[i] = n;
+        sum += sumArr[i];
+    }
+}
+
+//Marcando pontuação
+function score1() {
+    $("#score1").html(sumFiltered(filtered1, 1));
+    initGame();
+}
+
+function score2() {
+    $("#score2").html(sumFiltered(filtered2, 2));
+    initGame();
+}
+
+function score3() {
+    $("#score3").html(sumFiltered(filtered3, 3));
+    initGame();
+}
+
+function score4() {
+    $("#score4").html(sumFiltered(filtered4, 4));
+    initGame();
+}
+
+function score5() {
+    $("#score5").html(sumFiltered(filtered5, 5));
+    initGame();
+}
+
+function score6() {
+    $("#score6").html(sumFiltered(filtered6, 6));
+    initGame();
+}
+
+function scoreAleatoria() {
+    $("#scorealeatoria").html(val1 + val2 + val3 + val4 + val5);
+    initGame();
+}
+
+function scoreTrinca() {
+    $("#scoretrinca").html("20");
+    initGame();
+}
+
+function scoreFullhouse() {
+    $("#scorefullhouse").html("25");
+    initGame();
+}
+
+function scoreSeqA() {
+    $("#scoreseqalta").html("30");
+    initGame();
+}
+
+function scoreSeqB() {
+    $("#scoreseqbaixa").html("30");
+    initGame();
+}
+
+function scoreQuadra() {
+    $("#scoretrinca").html("30");
+    initGame();
+}
+
+function scoreGeneral() {
+    $("#scoretrinca").html("50");
+    initGame();
+}
+
+function generalZero() {
+    $("#scorename-general").addClass("text-strike");
+    $("#scoregeneral").html("0");
+    initGame();
+}
+
+//CONDIÇÕES DE JOGADAS
+function checkScore() {
+    filterDices();
+    //Condição para General
+    if (filtered1 > 0) {
+        $("#btnscore").show();
+        $("#btn-score1").show();
+    } else { $("#btn-score1").hide() }
+    if (filtered2 > 0) {
+        $("#btnscore").show();
+        $("#btn-score2").show();
+    } else { $("#btn-score2").hide() }
+    if (filtered3 > 0) {
+        $("#btnscore").show();
+        $("#btn-score3").show();
+    } else { $("#btn-score3").hide() }
+    if (filtered4 > 0) {
+        $("#btnscore").show();
+        $("#btn-score4").show();
+    } else { $("#btn-score4").hide() }
+    if (filtered5 > 0) {
+        $("#btnscore").show();
+        $("#btn-score5").show();
+    } else { $("#btn-score5").hide() }
+    if (filtered6 > 0) {
+        $("#btnscore").show();
+        $("#btn-score6").show();
+    } else { $("#btn-score6").hide() }
+    if (val1 === val2 && val2 === val3 && val3 === val4 && val4 === val5) {
+        $("#btnscore").show();
+        $("#btn-general").show();
+    } else { $("#btn-general").hide() }
+    //Condição para Full House
+    if (
+        (filtered1 === 2 || filtered2 === 2 || filtered3 === 2 || filtered4 === 2 || filtered5 === 2 || filtered6 === 2) && (filtered1 === 3 || filtered2 === 3 || filtered3 === 3 || filtered4 === 3 || filtered5 === 3 || filtered6 === 3)
+    ) {
+        $("#btnscore").show();
+        $("#btn-fullhouse").show();
+    } else { $("#btn-fullhouse").hide() }
+    //Condição para Sequência Maior
+    if ((filteredArr.length === 5) && (Math.min(...arr) > 1)) {
+        $("#btnscore").show();
+        $("#btn-seqb").show();
+    } else { $("#btn-seqb").hide() }
+    //Condição para Sequência Menor
+    if ((filteredArr.length === 5) && (Math.max(...arr) < 6)) {
+        $("#btnscore").show();
+        $("#btn-seqa").show();
+    } else { $("#btn-seqa").hide() }
+    //Condição para Quadra
+    if (filtered1 > 3 || filtered2 > 3 || filtered3 > 3 || filtered4 > 3 || filtered5 > 3 || filtered6 > 3) {
+        $("#btnscore").show();
+        $("#btn-quadra").show();
+    } else { $("#btn-quadra").hide() }
+    //Condição para Trinca
+    if (filtered1 > 2 || filtered2 > 2 || filtered3 > 2 || filtered4 > 2 || filtered5 > 2 || filtered6 > 2) {
+        $("#btnscore").show();
+        $("#btn-trinca").show();
+    } else { $("#btn-trinca").hide() }
+}
+
+function playdice() {
     selectedDiceArr = [];
+    removeAnimations();
     selectedDices[0] = $("input[type=checkbox]")[0].checked;
     selectedDices[1] = $("input[type=checkbox]")[1].checked;
     selectedDices[2] = $("input[type=checkbox]")[2].checked;
@@ -142,7 +280,7 @@ function playdice() {
         setTimeout(() => {
             $("#dado-img1").addClass("animate__shakeX");
             setTimeout(() => {
-                $("#dado-img1").prop("src", generateImgDado(val1))
+                $("#dado-img1").prop("src", generateImgDado(val1));
             }, "1000");
             setTimeout(() => {
                 $("#dado-img2").addClass("animate__shakeX");
@@ -176,7 +314,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img1").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img1").prop("src", generateImgDado(val1))
+                        $("#dado-img1").prop("src", generateImgDado(val1));
                     }, "1000");
                 }, "500");
                 break;
@@ -185,7 +323,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img2").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img2").prop("src", generateImgDado(val2))
+                        $("#dado-img2").prop("src", generateImgDado(val2));
                     }, "1000");
                 }, "500");
                 break;
@@ -194,7 +332,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img3").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img3").prop("src", generateImgDado(val3))
+                        $("#dado-img3").prop("src", generateImgDado(val3));
                     }, "1000");
                 }, "500");
                 break;
@@ -203,7 +341,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img4").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img4").prop("src", generateImgDado(val4))
+                        $("#dado-img4").prop("src", generateImgDado(val4));
                     }, "1000");
                 }, "500");
                 break;
@@ -212,7 +350,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img5").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img5").prop("src", generateImgDado(val5))
+                        $("#dado-img5").prop("src", generateImgDado(val5));
                     }, "1000");
                 }, "500");
                 break;
@@ -225,7 +363,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img1").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img1").prop("src", generateImgDado(val1))
+                        $("#dado-img1").prop("src", generateImgDado(val1));
                     }, "1000");
                 }, "500");
                 break;
@@ -234,7 +372,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img2").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img2").prop("src", generateImgDado(val2))
+                        $("#dado-img2").prop("src", generateImgDado(val2));
                     }, "1000");
                 }, "500");
                 break;
@@ -243,7 +381,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img3").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img3").prop("src", generateImgDado(val3))
+                        $("#dado-img3").prop("src", generateImgDado(val3));
                     }, "1000");
                 }, "500");
                 break;
@@ -252,7 +390,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img4").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img4").prop("src", generateImgDado(val4))
+                        $("#dado-img4").prop("src", generateImgDado(val4));
                     }, "1000");
                 }, "500");
                 break;
@@ -261,7 +399,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img5").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img5").prop("src", generateImgDado(val5))
+                        $("#dado-img5").prop("src", generateImgDado(val5));
                     }, "1000");
                 }, "500");
                 break;
@@ -275,7 +413,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img1").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img1").prop("src", generateImgDado(val1))
+                        $("#dado-img1").prop("src", generateImgDado(val1));
                     }, "1000");
                 }, "500");
                 break;
@@ -284,7 +422,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img2").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img2").prop("src", generateImgDado(val2))
+                        $("#dado-img2").prop("src", generateImgDado(val2));
                     }, "1000");
                 }, "500");
                 break;
@@ -293,7 +431,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img3").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img3").prop("src", generateImgDado(val3))
+                        $("#dado-img3").prop("src", generateImgDado(val3));
                     }, "1000");
                 }, "500");
                 break;
@@ -302,7 +440,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img4").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img4").prop("src", generateImgDado(val4))
+                        $("#dado-img4").prop("src", generateImgDado(val4));
                     }, "1000");
                 }, "500");
                 break;
@@ -311,7 +449,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img5").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img5").prop("src", generateImgDado(val5))
+                        $("#dado-img5").prop("src", generateImgDado(val5));
                     }, "1000");
                 }, "500");
                 break;
@@ -324,7 +462,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img1").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img1").prop("src", generateImgDado(val1))
+                        $("#dado-img1").prop("src", generateImgDado(val1));
                     }, "1000");
                 }, "500");
                 break;
@@ -333,7 +471,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img2").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img2").prop("src", generateImgDado(val2))
+                        $("#dado-img2").prop("src", generateImgDado(val2));
                     }, "1000");
                 }, "500");
                 break;
@@ -342,7 +480,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img3").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img3").prop("src", generateImgDado(val3))
+                        $("#dado-img3").prop("src", generateImgDado(val3));
                     }, "1000");
                 }, "500");
                 break;
@@ -351,7 +489,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img4").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img4").prop("src", generateImgDado(val4))
+                        $("#dado-img4").prop("src", generateImgDado(val4));
                     }, "1000");
                 }, "500");
                 break;
@@ -360,7 +498,7 @@ function playdice() {
                 setTimeout(() => {
                     $("#dado-img5").addClass("animate__shakeX");
                     setTimeout(() => {
-                        $("#dado-img5").prop("src", generateImgDado(val5))
+                        $("#dado-img5").prop("src", generateImgDado(val5));
                     }, "1000");
                 }, "500");
                 break;
@@ -369,7 +507,6 @@ function playdice() {
         }
     }
     diceRollChance++;
-    //console.log(selectedDiceArr);
     $("input[type=checkbox]").hide();
     $("#botao-jogar").prop("disabled", true);
     $("input[type=checkbox]").prop("disabled", true);
@@ -377,6 +514,7 @@ function playdice() {
     $(".btn .btn-text").html("Jogando dados...");
     if (diceRollChance === 2) {
         setTimeout(() => {
+            checkScore();
             $(".btn .btn-text").html("Segunda chance");
             $("#text-instructions").html("Escolha até 2 dados para jogar novamente ou selecione abaixo uma pontuação que deseja marcar.");
             $("#botao-jogar").prop("disabled", false); //habilitar botão Jogar dados
@@ -386,6 +524,7 @@ function playdice() {
         }, "3500");
     } else if (diceRollChance === 3) {
         setTimeout(() => {
+            checkScore();
             $(".btn .btn-text").html("Última chance");
             $("#text-instructions").html("Escolha até 2 dados para jogar novamente ou selecione abaixo uma pontuação que deseja marcar.");
             $("#botao-jogar").prop("disabled", false); //habilitar botão Jogar dados
@@ -395,6 +534,7 @@ function playdice() {
         }, "1500");
     } else {
         setTimeout(() => {
+            checkScore();
             $("#botao-jogar").prop("disabled", true);
             $(".btn .btn-text").html("Jogadas esgotadas");
             $("#text-instructions").html("Suas jogadas esgotaram. Selecione abaixo qual pontuação deseja marcar.");

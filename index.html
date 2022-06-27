@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="style.css">
@@ -63,97 +63,148 @@
                         <span class="btn-text">Jogar dados</span>
                     </button>
                 </div>
-                <div id="btnscore" class="text-center" hidden>
+                <div id="btnscore" class="text-center">
                     <hr class="mb-2">
                     <h3 class="text-center mb-3">Qual pontuação deseja marcar?</h3>
-                    <button class="btn btn-primary mb-1" hidden type="button">General</button>
-                    <button class="btn btn-primary mb-1" hidden type="button">Sequência baixa</button>
-                    <button class="btn btn-primary mb-1" hidden type="button">Sequência alta</button>
-                    <button class="btn btn-primary mb-1" hidden type="button">Full-house</button>
-                    <button class="btn btn-primary mb-1" hidden type="button">Quadra</button>
-                    <button class="btn btn-primary mb-1" hidden type="button">Trinca</button>
-                    <button class="btn btn-primary mb-1" hidden type="button">Dupla</button>
-                    <button class="btn btn-primary mb-1" hidden type="button">6</button>
-                    <button class="btn btn-primary mb-1" hidden type="button">5</button>
-                    <button class="btn btn-primary mb-1" hidden type="button">4</button>
-                    <button class="btn btn-primary mb-1" hidden type="button">3</button>
-                    <button class="btn btn-primary mb-1" hidden type="button">2</button>
-                    <button class="btn btn-primary mb-1" hidden type="button">1</button>
+                    <button id="btn-general" class="btn btn-primary mb-1" type="button" onclick="scoreGeneral()">General</button>
+                    <button id="btn-seqb" class="btn btn-primary mb-1" type="button" onclick="scoreSeqB()">Sequência baixa</button>
+                    <button id="btn-seqa" class="btn btn-primary mb-1" type="button" onclick="scoreSeqA()">Sequência alta</button>
+                    <button id="btn-fullhouse" class="btn btn-primary mb-1" type="button" onclick="scoreFullhouse()">Full-house</button>
+                    <button id="btn-quadra" class="btn btn-primary mb-1" type="button" onclick="scoreQuadra()">Quadra</button>
+                    <button id="btn-trinca" class="btn btn-primary mb-1" type="button" onclick="scoreTrinca()">Trinca</button>
+                    <button id="btn-6" class="btn btn-primary mb-1" type="button" onclick="score6()">6</button>
+                    <button id="btn-5" class="btn btn-primary mb-1" type="button" onclick="score5()">5</button>
+                    <button id="btn-4" class="btn btn-primary mb-1" type="button" onclick="score4()">4</button>
+                    <button id="btn-3" class="btn btn-primary mb-1" type="button" onclick="score3()">3</button>
+                    <button id="btn-2" class="btn btn-primary mb-1" type="button" onclick="score2()">2</button>
+                    <button id="btn-1" class="btn btn-primary mb-1" type="button" onclick="score1()">1</button>
+                    <button id="btn-aleatoria" class="btn btn-primary mb-1" type="button" onclick="scoreAleatoria()">Aleatória</button>
+                    <button id="btn-zero" class="btn btn-danger mb-1" type="button" data-bs-toggle="modal" data-bs-target="#modal-riscar">Riscar jogada</button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modal-riscar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Riscar jogada</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Tem certeza que deseja riscar uma jogada?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="scoreZero()">Sim, riscar jogada</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="btnscorezero" class="text-center">
+                    <hr class="mb-2">
+                    <h3 class="text-center mb-3">Qual pontuação deseja <b class="text-danger">riscar</b>?</h3>
+                    <button id="btn-general-zero" class="btn btn-danger mb-1" type="button" onclick="generalZero()">General</button>
+                    <button id="btn-seqb-zero" class="btn btn-danger mb-1" type="button" onclick="seqBZero()">Sequência baixa</button>
+                    <button id="btn-seqa-zero" class="btn btn-danger mb-1" type="button" onclick="seqAZero()">Sequência alta</button>
+                    <button id="btn-fullhouse-zero" class="btn btn-danger mb-1" type="button" onclick="fullhouseZero()">Full-house</button>
+                    <button id="btn-quadra-zero" class="btn btn-danger mb-1" type="button" onclick="quadraZero()">Quadra</button>
+                    <button id="btn-trinca-zero" class="btn btn-danger mb-1" type="button" onclick="trincaZero()">Trinca</button>
+                    <button id="btn-6-zero" class="btn btn-danger mb-1" type="button" onclick="zero6()">6</button>
+                    <button id="btn-5-zero" class="btn btn-danger mb-1" type="button" onclick="zero5()">5</button>
+                    <button id="btn-4-zero" class="btn btn-danger mb-1" type="button" onclick="zero4()">4</button>
+                    <button id="btn-3-zero" class="btn btn-danger mb-1" type="button" onclick="zero3()">3</button>
+                    <button id="btn-2-zero" class="btn btn-danger mb-1" type="button" onclick="zero2()">2</button>
+                    <button id="btn-1-zero" class="btn btn-danger mb-1" type="button" onclick="zero1()">1</button>
+                    <button id="btn-aleatoria-zero" class="btn btn-danger mb-1" type="button" onclick="aleatoriaZero()">Jogada aleatória</button>
                 </div>
             </div>
             <div class="card-footer text-center">
-                <h3>Tabela de pontuação</h3>
-                <table id="scoretable" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Pontuação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="scorerow1" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">1</th>
-                            <td id="score1">3</td>
-                        </tr>
-                        <tr id="scorerow2" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">2</th>
-                            <td id="score2">8</td>
-                        </tr>
-                        <tr id="scorerow3" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">3</th>
-                            <td id="score3">6</td>
-                        </tr>
-                        <tr id="scorerow4" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">4</th>
-                            <td id="score4">12</td>
-                        </tr>
-                        <tr id="scorerow5" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">5</th>
-                            <td id="score5">20</td>
-                        </tr>
-                        <tr id="scorerow6" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">6</th>
-                            <td id="score6">24</td>
-                        </tr>
-                        <tr id="scorerowdupla" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">Dupla</th>
-                            <td id="scoredupla">8</td>
-                        </tr>
-                        <tr id="scorerowtrinca" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">Trinca</th>
-                            <td id="scoretrinca">20</td>
-                        </tr>
-                        <tr id="scorerowquadra" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">Quadra</th>
-                            <td id="scorequadra">30</td>
-                        </tr>
-                        <tr id="scorerowfullhouse" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">Full-house</th>
-                            <td id="scorefullhouse">40</td>
-                        </tr>
-                        <tr id="scorerowseqalta" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">Sequência alta</th>
-                            <td id="scoreseqalta">40</td>
-                        </tr>
-                        <tr id="scorerowseqbaixa" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">Sequência baixa</th>
-                            <td id="scoreseqbaixa">45</td>
-                        </tr>
-                        <tr id="scorerowgeneral" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">General</th>
-                            <td id="scoregeneral">60</td>
-                        </tr>
-                        <tr id="scorerowaleatoria" onclick="selectScore(this.id, this.children[1].id)">
-                            <th scope="row">Jogada aleatória</th>
-                            <td id="scorealeatoria">20</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+                <div id="scoretittle" class="p-2" role="button" data-bs-toggle="collapse" href="#scoretable" aria-expanded="true" aria-controls="scoretable">
+                    <div id="arrow-container" class="d-inline">
+                        <i class="fa-solid fa-caret-down d-inline"></i>
+                    </div>
+                    <div class="d-inline">
+                        <h3 class="d-inline p-3">Tabela de pontuação</h3>
+                    </div>
+                </div>
+
+                <div class="collapse show" id="scoretable">
+                    <div class="card card-body pb-1">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr class="border-rounded">
+                                    <th scope="col"></th>
+                                    <th scope="col">Pontuação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border border-rounded" id="scorerow1">
+                                    <th id="scorename-1" scope="row">1</th>
+                                    <td id="score1"></td>
+                                </tr>
+                                <tr id="scorerow2">
+                                    <th id="scorename-2" scope="row">2</th>
+                                    <td id="score2"></td>
+                                </tr>
+                                <tr id="scorerow3">
+                                    <th id="scorename-3" scope="row">3</th>
+                                    <td id="score3"></td>
+                                </tr>
+                                <tr id="scorerow4">
+                                    <th id="scorename-4" scope="row">4</th>
+                                    <td id="score4"></td>
+                                </tr>
+                                <tr id="scorerow5">
+                                    <th id="scorename-5" scope="row">5</th>
+                                    <td id="score5"></td>
+                                </tr>
+                                <tr id="scorerow6">
+                                    <th id="scorename-6" scope="row">6</th>
+                                    <td id="score6"></td>
+                                </tr>
+                                <tr id="scorerowtrinca">
+                                    <th id="scorename-trinca" scope="row">Trinca</th>
+                                    <td id="scoretrinca"></td>
+                                </tr>
+                                <tr id="scorerowquadra">
+                                    <th id="scorename-quadra" scope="row">Quadra</th>
+                                    <td id="scorequadra"></td>
+                                </tr>
+                                <tr id="scorerowfullhouse">
+                                    <th id="scorename-fullhouse" scope="row">Full-house</th>
+                                    <td id="scorefullhouse"></td>
+                                </tr>
+                                <tr id="scorerowseqalta">
+                                    <th id="scorename-seqa" scope="row">Sequência alta</th>
+                                    <td id="scoreseqalta"></td>
+                                </tr>
+                                <tr id="scorerowseqbaixa">
+                                    <th id="scorename-seqb" scope="row">Sequência baixa</th>
+                                    <td id="scoreseqbaixa"></td>
+                                </tr>
+                                <tr id="scorerowgeneral">
+                                    <th id="scorename-general" scope="row">General</th>
+                                    <td id="scoregeneral"></td>
+                                </tr>
+                                <tr id="scorerowaleatoria">
+                                    <th id="scorename-aleatoria" scope="row">Jogada aleatória</th>
+                                    <td id="scorealeatoria"></td>
+                                </tr>
+                                <tr id="scorerowtotal" class="border border-3">
+                                    <th id="scorename-total" scope="row">Total</th>
+                                    <td id="scoretotal"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </body>
 <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="general.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
 </html>
