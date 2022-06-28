@@ -52,7 +52,6 @@ var filtered5 = notZero(5);
 var filtered6 = notZero(6);
 
 //filtrando array de 1 para valores diferentes nos dados
-
 var arr1 = [filtered1, filtered2, filtered3, filtered4, filtered5, filtered6];
 var filteredArr = [];
 
@@ -73,6 +72,16 @@ function filterDices() {
 }
 
 var diceRollChance = 1;
+
+function totalScore() {
+    var calcScore = 0;
+    $(".scorevalue").each(function() {
+        if ($(this).text() != '') {
+            calcScore += parseInt($(this).text());
+        }
+    });
+    $("#scoretotal").text(calcScore);
+}
 
 //Iniciando com checkbox desabilitados
 function initGame() {
@@ -139,72 +148,87 @@ function sumFiltered(f) {
 //Marcando pontuação
 function score1() {
     $("#score1").html(sumFiltered(filtered1, 1));
+    totalScore();
     initGame();
 }
 
 function score2() {
     $("#score2").html(sumFiltered(filtered2, 2));
+    totalScore();
     initGame();
 }
 
 function score3() {
     $("#score3").html(sumFiltered(filtered3, 3));
+    totalScore();
     initGame();
 }
 
 function score4() {
     $("#score4").html(sumFiltered(filtered4, 4));
+    totalScore();
     initGame();
 }
 
 function score5() {
     $("#score5").html(sumFiltered(filtered5, 5));
+    totalScore();
     initGame();
 }
 
 function score6() {
     $("#score6").html(sumFiltered(filtered6, 6));
+    totalScore();
     initGame();
 }
 
 function scoreAleatoria() {
     $("#scorealeatoria").html(val1 + val2 + val3 + val4 + val5);
+    totalScore();
     initGame();
 }
 
 function scoreTrinca() {
     $("#scoretrinca").html("20");
+    totalScore();
     initGame();
 }
 
 function scoreFullhouse() {
     $("#scorefullhouse").html("25");
+    totalScore();
     initGame();
 }
 
 function scoreSeqA() {
     $("#scoreseqalta").html("30");
+    totalScore();
     initGame();
 }
 
 function scoreSeqB() {
     $("#scoreseqbaixa").html("30");
+    totalScore();
     initGame();
 }
 
 function scoreQuadra() {
     $("#scoretrinca").html("30");
+    totalScore();
     initGame();
 }
 
 function scoreGeneral() {
     $("#scoretrinca").html("50");
+    totalScore();
     initGame();
 }
 
+//Zerando pontuações
 function generalZero() {
     $("#scorename-general").addClass("text-strike");
     $("#scoregeneral").html("0");
+    totalScore();
     initGame();
 }
 
