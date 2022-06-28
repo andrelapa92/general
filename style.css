@@ -28,9 +28,25 @@
     min-width: 50px;
 }
 
+.fa-caret-right {
+    padding-top: 3px;
+}
+
 #scorerowtotal {
     font-weight: bold;
     font-size: 22px;
+}
+
+#arrow-container {
+    padding-right: 10px;
+}
+
+#text-score {
+    padding-top: 10px;
+}
+
+.card-footer {
+    padding-top: 0;
 }
 
 @media only screen and (max-width: 540px) {

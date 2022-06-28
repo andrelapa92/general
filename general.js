@@ -10,6 +10,12 @@ class Dice {
     }
 }
 
+//Rotate icon (Tabela de pontuação)
+$("#scoretittle").on("click", function() {
+    $("#arrow-icon").toggleClass("fa-caret-down");
+    $("#arrow-icon").toggleClass("fa-caret-right");
+});
+
 //Estanciando dados
 var dado1 = new Dice(6);
 var dado2 = new Dice(6);
