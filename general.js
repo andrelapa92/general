@@ -72,6 +72,7 @@ function filterDices() {
 }
 
 var diceRollChance = 1;
+var gameRound = 0;
 
 function totalScore() {
     var calcScore = 0;
@@ -83,7 +84,7 @@ function totalScore() {
     $("#scoretotal").text(calcScore);
 }
 
-//Iniciando com checkbox desabilitados
+//Iniciando rodada
 function initGame() {
     $("input[type=checkbox]").prop("disabled", true);
     $("input[type=checkbox]").hide();
@@ -111,7 +112,16 @@ function initGame() {
     $("#dado-img3").prop("src", "img/general.png");
     $("#dado-img4").prop("src", "img/general.png");
     $("#dado-img5").prop("src", "img/general.png");
+    $("input[type=checkbox]").prop("checked", false);
+    if (gameRound > 0) {
+        val1 = dado1.Roll();
+        val2 = dado2.Roll();
+        val3 = dado3.Roll();
+        val4 = dado4.Roll();
+        val5 = dado5.Roll();
+    }
     diceRollChance = 1;
+    gameRound++;
 }
 //Removendo as classes de animação para conseguir animar novamente depois
 function removeAnimations() {
