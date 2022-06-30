@@ -30,6 +30,20 @@ var val3 = dado3.Roll();
 var val4 = dado4.Roll();
 var val5 = dado5.Roll();
 
+var sScore1 = false;
+var sScore2 = false;
+var sScore3 = false;
+var sScore4 = false;
+var sScore5 = false;
+var sScore6 = false;
+var sTrinca = false;
+var sQuadra = false;
+var sFullhouse = false;
+var sSeqA = false;
+var sSeqB = false;
+var sGeneral = false;
+var sAleatoria = false;
+
 //Gerar caminho para imagem dos dados
 function generateImgDado(valorDoDado) {
     return "img/dado-" + valorDoDado + ".png";
@@ -63,6 +77,7 @@ function filterDices() {
     filtered4 = notZero(4);
     filtered5 = notZero(5);
     filtered6 = notZero(6);
+    arr1 = [filtered1, filtered2, filtered3, filtered4, filtered5, filtered6];
     filteredArr = [];
     for (let el of arr1) {
         if (el !== undefined) {
@@ -71,6 +86,7 @@ function filterDices() {
     }
 }
 
+var finishGame = false;
 var diceRollChance = 1;
 var gameRound = 0;
 
@@ -101,7 +117,6 @@ function initGame() {
     $("#btn-3").hide();
     $("#btn-2").hide();
     $("#btn-1").hide();
-    $("#btn-zero").hide();
     $("#btnscore").hide();
     $("#btnscorezero").hide();
     $("#text-instructions").html("Jogue os dados.");
@@ -113,6 +128,7 @@ function initGame() {
     $("#dado-img4").prop("src", "img/general.png");
     $("#dado-img5").prop("src", "img/general.png");
     $("input[type=checkbox]").prop("checked", false);
+    $("input[type=checkbox]").parent().removeClass("border-5 border-primary");
     if (gameRound > 0) {
         val1 = dado1.Roll();
         val2 = dado2.Roll();
@@ -134,25 +150,21 @@ function removeAnimations() {
 
 initGame();
 
-var selectedDices = Array.of(5);
+var selectedDices = [];
 var selectedDiceArr = [];
-
-function scoreZero() {
-    $("#btnscore").hide();
-    $("#btnscorezero").show();
-}
 
 function hideScoreBtns() {
     $("#btnscore").hide();
 }
 
-function sumFiltered(f) {
-    let sumArr = Array.of(f, n);
+function sumFiltered(f, n) {
+    let sumArr = new Array(f);
+    var sum = 0;
     for (let i = 0; i < f; i++) {
-        let sum = 0;
         sumArr[i] = n;
         sum += sumArr[i];
     }
+    return sum;
 }
 
 //Marcando pontuação
@@ -160,152 +172,317 @@ function score1() {
     $("#score1").html(sumFiltered(filtered1, 1));
     totalScore();
     initGame();
+    sScore1 = true;
 }
 
 function score2() {
     $("#score2").html(sumFiltered(filtered2, 2));
     totalScore();
     initGame();
+    sScore2 = true;
 }
 
 function score3() {
     $("#score3").html(sumFiltered(filtered3, 3));
     totalScore();
     initGame();
+    sScore3 = true;
 }
 
 function score4() {
     $("#score4").html(sumFiltered(filtered4, 4));
     totalScore();
     initGame();
+    sScore4 = true;
 }
 
 function score5() {
     $("#score5").html(sumFiltered(filtered5, 5));
     totalScore();
     initGame();
+    sScore5 = true;
 }
 
 function score6() {
     $("#score6").html(sumFiltered(filtered6, 6));
     totalScore();
     initGame();
-}
-
-function scoreAleatoria() {
-    $("#scorealeatoria").html(val1 + val2 + val3 + val4 + val5);
-    totalScore();
-    initGame();
+    sScore6 = true;
 }
 
 function scoreTrinca() {
     $("#scoretrinca").html("20");
     totalScore();
     initGame();
+    sTrinca = true;
+}
+
+function scoreQuadra() {
+    $("#scorequadra").html("30");
+    totalScore();
+    initGame();
+    sQuadra = true;
 }
 
 function scoreFullhouse() {
     $("#scorefullhouse").html("25");
     totalScore();
     initGame();
+    sFullhouse = true;
 }
 
 function scoreSeqA() {
     $("#scoreseqalta").html("30");
     totalScore();
     initGame();
+    sSeqA = true;
 }
 
 function scoreSeqB() {
     $("#scoreseqbaixa").html("30");
     totalScore();
     initGame();
-}
-
-function scoreQuadra() {
-    $("#scoretrinca").html("30");
-    totalScore();
-    initGame();
+    sSeqB = true;
 }
 
 function scoreGeneral() {
-    $("#scoretrinca").html("50");
+    $("#scoregeneral").html("50");
     totalScore();
     initGame();
+    sGeneral = true;
 }
 
-//Zerando pontuações
+function scoreAleatoria() {
+    $("#scorealeatoria").html(val1 + val2 + val3 + val4 + val5);
+    totalScore();
+    initGame();
+    sAleatoria = true;
+}
+
+//ZERANDO PONTUAÇÕES
+
+//Executada ao confirmar que deseja zerar pontuação
+function scoreZero() {
+    if (sScore1 === true) { $("#btn-1-zero").hide() } else { $("#btn-1-zero").show() }
+    if (sScore2 === true) { $("#btn-2-zero").hide() } else { $("#btn-2-zero").show() }
+    if (sScore3 === true) { $("#btn-3-zero").hide() } else { $("#btn-3-zero").show() }
+    if (sScore4 === true) { $("#btn-4-zero").hide() } else { $("#btn-4-zero").show() }
+    if (sScore5 === true) { $("#btn-5-zero").hide() } else { $("#btn-5-zero").show() }
+    if (sScore6 === true) { $("#btn-6-zero").hide() } else { $("#btn-6-zero").show() }
+    if (sTrinca === true) { $("#btn-trinca-zero").hide() } else { $("#btn-trinca-zero").show() }
+    if (sQuadra === true) { $("#btn-quadra-zero").hide() } else { $("#btn-quadra-zero").show() }
+    if (sFullhouse === true) { $("#btn-fullhouse-zero").hide() } else { $("#btn-fullhouse-zero").show() }
+    if (sSeqA === true) { $("#btn-seqa-zero").hide() } else { $("#btn-seqa-zero").show() }
+    if (sSeqB === true) { $("#btn-seqb-zero").hide() } else { $("#btn-seqb-zero").show() }
+    if (sGeneral === true) { $("#btn-general-zero").hide() } else { $("#btn-general-zero").show() }
+    if (sAleatoria === true) { $("#btn-aleatoria-zero").hide() } else { $("#btn-aleatoria-zero").show() }
+    if (finishGame === false) {
+        $("#btnscore").hide();
+        $("#btnscorezero").show();
+    } else {
+        console.log("Recomeçar o jogo e gravar pontuação total");
+    }
+}
+
+//Zerando e riscando uma pontuação
+
+function zero1() {
+    $("#scorename-1").addClass("text-strike");
+    $("#scorerow1").addClass("text-danger");
+    $("#score1").html("0");
+    totalScore();
+    initGame();
+    sScore1 = true;
+}
+
+function zero2() {
+    $("#scorename-2").addClass("text-strike");
+    $("#scorerow2").addClass("text-danger");
+    $("#score2").html("0");
+    totalScore();
+    initGame();
+    sScore2 = true;
+}
+
+function zero3() {
+    $("#scorename-3").addClass("text-strike");
+    $("#scorerow3").addClass("text-danger");
+    $("#score3").html("0");
+    totalScore();
+    initGame();
+    sScore3 = true;
+}
+
+function zero4() {
+    $("#scorename-4").addClass("text-strike");
+    $("#scorerow4").addClass("text-danger");
+    $("#score4").html("0");
+    totalScore();
+    initGame();
+    sScore4 = true;
+}
+
+function zero5() {
+    $("#scorename-5").addClass("text-strike");
+    $("#scorerow5").addClass("text-danger");
+    $("#score5").html("0");
+    totalScore();
+    initGame();
+    sScore5 = true;
+}
+
+function zero6() {
+    $("#scorename-6").addClass("text-strike");
+    $("#scorerow6").addClass("text-danger");
+    $("#score6").html("0");
+    totalScore();
+    initGame();
+    sScore6 = true;
+}
+
+function trincaZero() {
+    $("#scorename-trinca").addClass("text-strike");
+    $("#scorerowtrinca").addClass("text-danger");
+    $("#scoretrinca").html("0");
+    totalScore();
+    initGame();
+    sTrinca = true;
+}
+
+function quadraZero() {
+    $("#scorename-quadra").addClass("text-strike");
+    $("#scorerowquadra").addClass("text-danger");
+    $("#scorequadra").html("0");
+    totalScore();
+    initGame();
+    sQuadra = true;
+}
+
+function fullhouseZero() {
+    $("#scorename-fullhouse").addClass("text-strike");
+    $("#scorerowfullhouse").addClass("text-danger");
+    $("#scorefullhouse").html("0");
+    totalScore();
+    initGame();
+    sFullhouse = true;
+}
+
+function seqAZero() {
+    $("#scorename-seqa").addClass("text-strike");
+    $("#scorerowseqalta").addClass("text-danger");
+    $("#scoreseqalta").html("0");
+    totalScore();
+    initGame();
+    sSeqA = true;
+}
+
+function seqBZero() {
+    $("#scorename-seqb").addClass("text-strike");
+    $("#scorerowseqbaixa").addClass("text-danger");
+    $("#scoreseqbaixa").html("0");
+    totalScore();
+    initGame();
+    sSeqB = true;
+}
+
 function generalZero() {
     $("#scorename-general").addClass("text-strike");
+    $("#scorerowgeneral").addClass("text-danger");
     $("#scoregeneral").html("0");
     totalScore();
     initGame();
+    sGeneral = true;
+}
+
+function aleatoriaZero() {
+    $("#scorename-aleatoria").addClass("text-strike");
+    $("#scorerowaleatoria").addClass("text-danger");
+    $("#scorealeatoria").html("0");
+    totalScore();
+    initGame();
+    sAleatoria = true;
 }
 
 //CONDIÇÕES DE JOGADAS
 function checkScore() {
     filterDices();
+    //Exibe o botão de riscar jogada somente se tiver jogadas restantes
+    if (sScore1 === true && sScore2 === true && sScore3 === true && sScore4 === true && sScore5 === true && sScore6 === true && sTrinca === true && sQuadra === true && sFullhouse === true && sSeqA === true && sSeqB === true && sGeneral === true && sAleatoria === true) {
+        finishGame = true;
+        $("#btnscore").hide();
+        $("#btn-zero").hide();
+    } else {
+        finishGame = false;
+        $("#btnscore").show();
+        $("#btn-zero").show();
+    }
+    //Condições para selecionar a somatória de um dado
+    if (filtered1 > 0 && sScore1 === false) {
+        $("#btnscore").show();
+        $("#btn-1").show();
+    } else { $("#btn-1").hide() }
+    if (filtered2 > 0 && sScore2 === false) {
+        $("#btnscore").show();
+        $("#btn-2").show();
+    } else { $("#btn-2").hide() }
+    if (filtered3 > 0 && sScore3 === false) {
+        $("#btnscore").show();
+        $("#btn-3").show();
+    } else { $("#btn-3").hide() }
+    if (filtered4 > 0 && sScore4 === false) {
+        $("#btnscore").show();
+        $("#btn-4").show();
+    } else { $("#btn-4").hide() }
+    if (filtered5 > 0 && sScore5 === false) {
+        $("#btnscore").show();
+        $("#btn-5").show();
+    } else { $("#btn-5").hide() }
+    if (filtered6 > 0 && sScore6 === false) {
+        $("#btnscore").show();
+        $("#btn-6").show();
+    } else { $("#btn-6").hide() }
     //Condição para General
-    if (filtered1 > 0) {
-        $("#btnscore").show();
-        $("#btn-score1").show();
-    } else { $("#btn-score1").hide() }
-    if (filtered2 > 0) {
-        $("#btnscore").show();
-        $("#btn-score2").show();
-    } else { $("#btn-score2").hide() }
-    if (filtered3 > 0) {
-        $("#btnscore").show();
-        $("#btn-score3").show();
-    } else { $("#btn-score3").hide() }
-    if (filtered4 > 0) {
-        $("#btnscore").show();
-        $("#btn-score4").show();
-    } else { $("#btn-score4").hide() }
-    if (filtered5 > 0) {
-        $("#btnscore").show();
-        $("#btn-score5").show();
-    } else { $("#btn-score5").hide() }
-    if (filtered6 > 0) {
-        $("#btnscore").show();
-        $("#btn-score6").show();
-    } else { $("#btn-score6").hide() }
-    if (val1 === val2 && val2 === val3 && val3 === val4 && val4 === val5) {
+    if (val1 === val2 && val2 === val3 && val3 === val4 && val4 === val5 && sGeneral === false) {
         $("#btnscore").show();
         $("#btn-general").show();
     } else { $("#btn-general").hide() }
     //Condição para Full House
     if (
-        (filtered1 === 2 || filtered2 === 2 || filtered3 === 2 || filtered4 === 2 || filtered5 === 2 || filtered6 === 2) && (filtered1 === 3 || filtered2 === 3 || filtered3 === 3 || filtered4 === 3 || filtered5 === 3 || filtered6 === 3)
+        (filtered1 === 2 || filtered2 === 2 || filtered3 === 2 || filtered4 === 2 || filtered5 === 2 || filtered6 === 2) && (filtered1 === 3 || filtered2 === 3 || filtered3 === 3 || filtered4 === 3 || filtered5 === 3 || filtered6 === 3) && sFullhouse === false
     ) {
         $("#btnscore").show();
         $("#btn-fullhouse").show();
     } else { $("#btn-fullhouse").hide() }
     //Condição para Sequência Maior
-    if ((filteredArr.length === 5) && (Math.min(...arr) > 1)) {
-        $("#btnscore").show();
-        $("#btn-seqb").show();
-    } else { $("#btn-seqb").hide() }
-    //Condição para Sequência Menor
-    if ((filteredArr.length === 5) && (Math.max(...arr) < 6)) {
+    if ((filteredArr.length === 5) && (Math.min(...arr) > 1) && sSeqA === false) {
         $("#btnscore").show();
         $("#btn-seqa").show();
     } else { $("#btn-seqa").hide() }
+    //Condição para Sequência Menor
+    if ((filteredArr.length === 5) && (Math.max(...arr) < 6) && sSeqB === false) {
+        $("#btnscore").show();
+        $("#btn-seqb").show();
+    } else { $("#btn-seqb").hide() }
     //Condição para Quadra
-    if (filtered1 > 3 || filtered2 > 3 || filtered3 > 3 || filtered4 > 3 || filtered5 > 3 || filtered6 > 3) {
+    if ((filtered1 > 3 || filtered2 > 3 || filtered3 > 3 || filtered4 > 3 || filtered5 > 3 || filtered6 > 3) && sQuadra === false) {
         $("#btnscore").show();
         $("#btn-quadra").show();
     } else { $("#btn-quadra").hide() }
     //Condição para Trinca
-    if (filtered1 > 2 || filtered2 > 2 || filtered3 > 2 || filtered4 > 2 || filtered5 > 2 || filtered6 > 2) {
+    if ((filtered1 > 2 || filtered2 > 2 || filtered3 > 2 || filtered4 > 2 || filtered5 > 2 || filtered6 > 2) && sTrinca === false) {
         $("#btnscore").show();
         $("#btn-trinca").show();
     } else { $("#btn-trinca").hide() }
+    if (sAleatoria === false) {
+        $("#btnscore").show();
+        $("#btn-aleatoria").show();
+    } else { $("#btn-aleatoria").hide() }
 }
 
 function playdice() {
-    selectedDiceArr = [];
     removeAnimations();
+    $("#btnscorezero").hide();
+    selectedDiceArr = [];
     selectedDices[0] = $("input[type=checkbox]")[0].checked;
     selectedDices[1] = $("input[type=checkbox]")[1].checked;
     selectedDices[2] = $("input[type=checkbox]")[2].checked;
@@ -561,6 +738,8 @@ function playdice() {
             $("input[type=checkbox]").prop("disabled", false); //habilitar checkbox
             $("input[type=checkbox]").show();
             $(".btn .fa-spinner").hide();
+            $("input[type=checkbox]").prop("checked", false);
+            $("input[type=checkbox]").parent().removeClass("border-5 border-primary");
         }, "3500");
     } else if (diceRollChance === 3) {
         setTimeout(() => {
@@ -571,6 +750,8 @@ function playdice() {
             $("input[type=checkbox]").prop("disabled", false); //habilitar checkbox
             $("input[type=checkbox]").show();
             $(".btn .fa-spinner").hide();
+            $("input[type=checkbox]").prop("checked", false);
+            $("input[type=checkbox]").parent().removeClass("border-5 border-primary");
         }, "1500");
     } else {
         setTimeout(() => {

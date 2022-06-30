@@ -72,12 +72,12 @@
                     <button id="btn-fullhouse" class="btn btn-primary mb-1" type="button" onclick="scoreFullhouse()">Full-house</button>
                     <button id="btn-quadra" class="btn btn-primary mb-1" type="button" onclick="scoreQuadra()">Quadra</button>
                     <button id="btn-trinca" class="btn btn-primary mb-1" type="button" onclick="scoreTrinca()">Trinca</button>
-                    <button id="btn-6" class="btn btn-primary mb-1" type="button" onclick="score6()">6</button>
-                    <button id="btn-5" class="btn btn-primary mb-1" type="button" onclick="score5()">5</button>
-                    <button id="btn-4" class="btn btn-primary mb-1" type="button" onclick="score4()">4</button>
-                    <button id="btn-3" class="btn btn-primary mb-1" type="button" onclick="score3()">3</button>
-                    <button id="btn-2" class="btn btn-primary mb-1" type="button" onclick="score2()">2</button>
                     <button id="btn-1" class="btn btn-primary mb-1" type="button" onclick="score1()">1</button>
+                    <button id="btn-2" class="btn btn-primary mb-1" type="button" onclick="score2()">2</button>
+                    <button id="btn-3" class="btn btn-primary mb-1" type="button" onclick="score3()">3</button>
+                    <button id="btn-4" class="btn btn-primary mb-1" type="button" onclick="score4()">4</button>
+                    <button id="btn-5" class="btn btn-primary mb-1" type="button" onclick="score5()">5</button>
+                    <button id="btn-6" class="btn btn-primary mb-1" type="button" onclick="score6()">6</button>
                     <button id="btn-aleatoria" class="btn btn-primary mb-1" type="button" onclick="scoreAleatoria()">Aleatória</button>
                     <button id="btn-zero" class="btn btn-danger mb-1" type="button" data-bs-toggle="modal" data-bs-target="#modal-riscar">Riscar jogada</button>
                 </div>
@@ -131,13 +131,13 @@
                     <div class="card card-body pb-1">
                         <table class="table table-striped">
                             <thead>
-                                <tr class="border-rounded">
-                                    <th scope="col"></th>
+                                <tr class="">
+                                    <th scope="col">Jogada</th>
                                     <th scope="col">Pontuação</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="border border-rounded" id="scorerow1">
+                            <tbody class="border">
+                                <tr id="scorerow1">
                                     <th id="scorename-1" scope="row">1</th>
                                     <td id="score1" class="scorevalue"></td>
                                 </tr>
@@ -189,7 +189,7 @@
                                     <th id="scorename-aleatoria" scope="row">Jogada aleatória</th>
                                     <td id="scorealeatoria" class="scorevalue"></td>
                                 </tr>
-                                <tr id="scorerowtotal" class="border border-3">
+                                <tr id="scorerowtotal" class="border border-4">
                                     <th id="scorename-total" scope="row">Total</th>
                                     <td id="scoretotal"></td>
                                 </tr>
