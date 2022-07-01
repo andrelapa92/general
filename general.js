@@ -98,6 +98,9 @@ function totalScore() {
         }
     });
     $("#scoretotal").text(calcScore);
+    if (finishGame === true) {
+        restartGame();
+    }
 }
 
 //Iniciando rodada
@@ -146,6 +149,12 @@ function removeAnimations() {
     $("#dado-img3").removeClass("animate__shakeX");
     $("#dado-img4").removeClass("animate__shakeX");
     $("#dado-img5").removeClass("animate__shakeX");
+}
+
+function restartGame() {
+    $(".text-strike").removeClass("text-strike");
+    $(".scorevalue").html("");
+    $(".scoretotal").html("");
 }
 
 initGame();
@@ -280,7 +289,7 @@ function scoreZero() {
         $("#btnscore").hide();
         $("#btnscorezero").show();
     } else {
-        console.log("Recomeçar o jogo e gravar pontuação total");
+        restartGame();
     }
 }
 
@@ -288,7 +297,6 @@ function scoreZero() {
 
 function zero1() {
     $("#scorename-1").addClass("text-strike");
-    $("#scorerow1").addClass("text-danger");
     $("#score1").html("0");
     totalScore();
     initGame();
@@ -297,7 +305,6 @@ function zero1() {
 
 function zero2() {
     $("#scorename-2").addClass("text-strike");
-    $("#scorerow2").addClass("text-danger");
     $("#score2").html("0");
     totalScore();
     initGame();
@@ -306,7 +313,6 @@ function zero2() {
 
 function zero3() {
     $("#scorename-3").addClass("text-strike");
-    $("#scorerow3").addClass("text-danger");
     $("#score3").html("0");
     totalScore();
     initGame();
@@ -315,7 +321,6 @@ function zero3() {
 
 function zero4() {
     $("#scorename-4").addClass("text-strike");
-    $("#scorerow4").addClass("text-danger");
     $("#score4").html("0");
     totalScore();
     initGame();
@@ -324,7 +329,6 @@ function zero4() {
 
 function zero5() {
     $("#scorename-5").addClass("text-strike");
-    $("#scorerow5").addClass("text-danger");
     $("#score5").html("0");
     totalScore();
     initGame();
@@ -333,7 +337,6 @@ function zero5() {
 
 function zero6() {
     $("#scorename-6").addClass("text-strike");
-    $("#scorerow6").addClass("text-danger");
     $("#score6").html("0");
     totalScore();
     initGame();
@@ -342,7 +345,6 @@ function zero6() {
 
 function trincaZero() {
     $("#scorename-trinca").addClass("text-strike");
-    $("#scorerowtrinca").addClass("text-danger");
     $("#scoretrinca").html("0");
     totalScore();
     initGame();
@@ -351,7 +353,6 @@ function trincaZero() {
 
 function quadraZero() {
     $("#scorename-quadra").addClass("text-strike");
-    $("#scorerowquadra").addClass("text-danger");
     $("#scorequadra").html("0");
     totalScore();
     initGame();
@@ -360,7 +361,6 @@ function quadraZero() {
 
 function fullhouseZero() {
     $("#scorename-fullhouse").addClass("text-strike");
-    $("#scorerowfullhouse").addClass("text-danger");
     $("#scorefullhouse").html("0");
     totalScore();
     initGame();
@@ -369,7 +369,6 @@ function fullhouseZero() {
 
 function seqAZero() {
     $("#scorename-seqa").addClass("text-strike");
-    $("#scorerowseqalta").addClass("text-danger");
     $("#scoreseqalta").html("0");
     totalScore();
     initGame();
@@ -378,7 +377,6 @@ function seqAZero() {
 
 function seqBZero() {
     $("#scorename-seqb").addClass("text-strike");
-    $("#scorerowseqbaixa").addClass("text-danger");
     $("#scoreseqbaixa").html("0");
     totalScore();
     initGame();
@@ -387,7 +385,6 @@ function seqBZero() {
 
 function generalZero() {
     $("#scorename-general").addClass("text-strike");
-    $("#scorerowgeneral").addClass("text-danger");
     $("#scoregeneral").html("0");
     totalScore();
     initGame();
@@ -396,7 +393,6 @@ function generalZero() {
 
 function aleatoriaZero() {
     $("#scorename-aleatoria").addClass("text-strike");
-    $("#scorerowaleatoria").addClass("text-danger");
     $("#scorealeatoria").html("0");
     totalScore();
     initGame();
