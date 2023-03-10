@@ -81,7 +81,7 @@
                     <button id="btn-aleatoria" class="btn btn-primary mb-1" type="button" onclick="scoreAleatoria()">Aleatória</button>
                     <button id="btn-zero" class="btn btn-danger mb-1" type="button" data-bs-toggle="modal" data-bs-target="#modal-riscar">Riscar jogada</button>
                 </div>
-                <!-- Modal -->
+                <!-- Modal Riscar Jogada -->
                 <div class="modal fade" id="modal-riscar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -195,6 +195,33 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Abrir modal de Jogo Finalizado -->
+            <button onclick="atualizaScoreTotal()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-finish">
+                <h1>Finalizar jogo</h1>
+            </button>
+
+            <!-- Modal Jogo Finalizado -->
+            <div class="modal fade" id="modal-finish" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="staticBackdropLabel">Jogo Finalizado</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <h1>Pontuação: <span id="score-modal">0</span></h1>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <p>Deseja jogar novamente?</p>
+                            <div class="mr-auto">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="restartGame()">Sim, reiniciar jogo</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

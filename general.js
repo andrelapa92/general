@@ -90,6 +90,15 @@ var finishGame = false;
 var diceRollChance = 1;
 var gameRound = 0;
 
+function restartGame() {
+    $(".text-strike").removeClass("text-strike");
+    $(".scorevalue").html("");
+    $("#scoretotal").html("");
+}
+
+//$("#modal-finish").modal();
+//openRestartGameModal();
+
 function totalScore() {
     var calcScore = 0;
     $(".scorevalue").each(function() {
@@ -100,6 +109,12 @@ function totalScore() {
     $("#scoretotal").text(calcScore);
     if (finishGame === true) {
         restartGame();
+    }
+}
+
+function atualizaScoreTotal() {
+    if (document.getElementById("scoretotal").innerText != "") {
+        document.getElementById("score-modal").innerHTML = document.getElementById("scoretotal").innerText;
     }
 }
 
@@ -151,12 +166,6 @@ function removeAnimations() {
     $("#dado-img5").removeClass("animate__shakeX");
 }
 
-function restartGame() {
-    $(".text-strike").removeClass("text-strike");
-    $(".scorevalue").html("");
-    $(".scoretotal").html("");
-}
-
 initGame();
 
 var selectedDices = [];
@@ -178,94 +187,94 @@ function sumFiltered(f, n) {
 
 //Marcando pontuação
 function score1() {
+    sScore1 = true;
     $("#score1").html(sumFiltered(filtered1, 1));
     totalScore();
     initGame();
-    sScore1 = true;
 }
 
 function score2() {
+    sScore2 = true;
     $("#score2").html(sumFiltered(filtered2, 2));
     totalScore();
     initGame();
-    sScore2 = true;
 }
 
 function score3() {
+    sScore3 = true;
     $("#score3").html(sumFiltered(filtered3, 3));
     totalScore();
     initGame();
-    sScore3 = true;
 }
 
 function score4() {
+    sScore4 = true;
     $("#score4").html(sumFiltered(filtered4, 4));
     totalScore();
     initGame();
-    sScore4 = true;
 }
 
 function score5() {
+    sScore5 = true;
     $("#score5").html(sumFiltered(filtered5, 5));
     totalScore();
     initGame();
-    sScore5 = true;
 }
 
 function score6() {
+    sScore6 = true;
     $("#score6").html(sumFiltered(filtered6, 6));
     totalScore();
     initGame();
-    sScore6 = true;
 }
 
 function scoreTrinca() {
+    sTrinca = true;
     $("#scoretrinca").html("20");
     totalScore();
     initGame();
-    sTrinca = true;
 }
 
 function scoreQuadra() {
+    sQuadra = true;
     $("#scorequadra").html("30");
     totalScore();
     initGame();
-    sQuadra = true;
 }
 
 function scoreFullhouse() {
+    sFullhouse = true;
     $("#scorefullhouse").html("25");
     totalScore();
     initGame();
-    sFullhouse = true;
 }
 
 function scoreSeqA() {
+    sSeqA = true;
     $("#scoreseqalta").html("30");
     totalScore();
     initGame();
-    sSeqA = true;
 }
 
 function scoreSeqB() {
+    sSeqB = true;
     $("#scoreseqbaixa").html("30");
     totalScore();
     initGame();
-    sSeqB = true;
 }
 
 function scoreGeneral() {
+    sGeneral = true;
     $("#scoregeneral").html("50");
     totalScore();
     initGame();
-    sGeneral = true;
 }
 
 function scoreAleatoria() {
+    sAleatoria = true;
     $("#scorealeatoria").html(val1 + val2 + val3 + val4 + val5);
     totalScore();
     initGame();
-    sAleatoria = true;
 }
 
 //ZERANDO PONTUAÇÕES
@@ -296,107 +305,107 @@ function scoreZero() {
 //Zerando e riscando uma pontuação
 
 function zero1() {
+    sScore1 = true;
     $("#scorename-1").addClass("text-strike");
     $("#score1").html("0");
     totalScore();
     initGame();
-    sScore1 = true;
 }
 
 function zero2() {
+    sScore2 = true;
     $("#scorename-2").addClass("text-strike");
     $("#score2").html("0");
     totalScore();
     initGame();
-    sScore2 = true;
 }
 
 function zero3() {
+    sScore3 = true;
     $("#scorename-3").addClass("text-strike");
     $("#score3").html("0");
     totalScore();
     initGame();
-    sScore3 = true;
 }
 
 function zero4() {
+    sScore4 = true;
     $("#scorename-4").addClass("text-strike");
     $("#score4").html("0");
     totalScore();
     initGame();
-    sScore4 = true;
 }
 
 function zero5() {
+    sScore5 = true;
     $("#scorename-5").addClass("text-strike");
     $("#score5").html("0");
     totalScore();
     initGame();
-    sScore5 = true;
 }
 
 function zero6() {
+    sScore6 = true;
     $("#scorename-6").addClass("text-strike");
     $("#score6").html("0");
     totalScore();
     initGame();
-    sScore6 = true;
 }
 
 function trincaZero() {
+    sTrinca = true;
     $("#scorename-trinca").addClass("text-strike");
     $("#scoretrinca").html("0");
     totalScore();
     initGame();
-    sTrinca = true;
 }
 
 function quadraZero() {
+    sQuadra = true;
     $("#scorename-quadra").addClass("text-strike");
     $("#scorequadra").html("0");
     totalScore();
     initGame();
-    sQuadra = true;
 }
 
 function fullhouseZero() {
+    sFullhouse = true;
     $("#scorename-fullhouse").addClass("text-strike");
     $("#scorefullhouse").html("0");
     totalScore();
     initGame();
-    sFullhouse = true;
 }
 
 function seqAZero() {
+    sSeqA = true;
     $("#scorename-seqa").addClass("text-strike");
     $("#scoreseqalta").html("0");
     totalScore();
     initGame();
-    sSeqA = true;
 }
 
 function seqBZero() {
+    sSeqB = true;
     $("#scorename-seqb").addClass("text-strike");
     $("#scoreseqbaixa").html("0");
     totalScore();
     initGame();
-    sSeqB = true;
 }
 
 function generalZero() {
+    sGeneral = true;
     $("#scorename-general").addClass("text-strike");
     $("#scoregeneral").html("0");
     totalScore();
     initGame();
-    sGeneral = true;
 }
 
 function aleatoriaZero() {
+    sAleatoria = true;
     $("#scorename-aleatoria").addClass("text-strike");
     $("#scorealeatoria").html("0");
     totalScore();
     initGame();
-    sAleatoria = true;
 }
 
 //CONDIÇÕES DE JOGADAS
@@ -407,6 +416,7 @@ function checkScore() {
         finishGame = true;
         $("#btnscore").hide();
         $("#btn-zero").hide();
+        restartGame();
     } else {
         finishGame = false;
         $("#btnscore").show();
