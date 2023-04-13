@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Yahtzee - Dice Game</title>
-    <link rel="icon" type="image/x-icon" href="img/general.png">
+    <link rel="icon" type="image/x-icon" href="public/general.png">
 </head>
 
 <body>
     <nav class="navbar navbar-light bg-light">
         <span id="nav" class="navbar-brand mb-0">
-            <img src="img/general.png" height="30" class="d-inline-block align-top"> Yahtzee - Dice Game
+            <img src="public/general.png" height="30" class="d-inline-block align-top"> Yahtzee - Dice Game
         </span>
     </nav>
     <div class="container">
@@ -29,31 +29,31 @@
                     <label for="chkbox1" class="fieldlabel">
                         <div id="dado-1" class="border rounded dados d-flex justify-content-center align-items-center">
                             <input type="checkbox" id="chkbox1" name="dicecheck" class="chkbox">
-                            <img id="dado-img1" class="animate__animated" src="img/general.png" height="80">
+                            <img id="dado-img1" class="animate__animated" src="public/general.png" height="80">
                         </div>
                     </label>
                     <label for="chkbox2" class="fieldlabel">
                         <div id="dado-2" class="border rounded dados d-flex justify-content-center align-items-center">
                             <input type="checkbox" id="chkbox2" name="dicecheck" class="chkbox">
-                            <img id="dado-img2" class="animate__animated" src="img/general.png" height="80">
+                            <img id="dado-img2" class="animate__animated" src="public/general.png" height="80">
                         </div>
                     </label>
                     <label for="chkbox3" class="fieldlabel">
                         <div id="dado-3" class="border rounded dados d-flex justify-content-center align-items-center">
                             <input type="checkbox" id="chkbox3" name="dicecheck" class="chkbox">
-                            <img id="dado-img3" class="animate__animated" src="img/general.png" height="80">
+                            <img id="dado-img3" class="animate__animated" src="public/general.png" height="80">
                         </div>
                     </label>
                     <label for="chkbox4" class="fieldlabel">
                         <div id="dado-4" class="border rounded dados d-flex justify-content-center align-items-center">
                             <input type="checkbox" id="chkbox4" name="dicecheck" class="chkbox">
-                            <img id="dado-img4" class="animate__animated" src="img/general.png" height="80">
+                            <img id="dado-img4" class="animate__animated" src="public/general.png" height="80">
                         </div>
                     </label>
                     <label for="chkbox5" class="fieldlabel">
                         <div id="dado-5" class="border rounded dados d-flex justify-content-center align-items-center">
                             <input type="checkbox" id="chkbox5" name="dicecheck" class="chkbox">
-                            <img id="dado-img5" class="animate__animated" src="img/general.png" height="80">
+                            <img id="dado-img5" class="animate__animated" src="public/general.png" height="80">
                         </div>
                     </label>
                 </div>
@@ -199,7 +199,7 @@
                 </div>
             </div>
             <!-- Abrir modal de Jogo Finalizado -->
-            <button onclick="atualizaScoreTotal()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-finish">
+            <button id="finalizar-jogo" onclick="atualizaScoreTotal()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-finish">
                 <h1>Finalizar jogo</h1>
             </button>
 

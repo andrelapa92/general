@@ -46,7 +46,7 @@ var sAleatoria = false;
 
 //Gerar caminho para imagem dos dados
 function generateImgDado(valorDoDado) {
-    return "img/dado-" + valorDoDado + ".png";
+    return "public/dado-" + valorDoDado + ".png";
 }
 
 //array com o valor de cada dado rolado
@@ -94,10 +94,8 @@ function restartGame() {
     $(".text-strike").removeClass("text-strike");
     $(".scorevalue").html("");
     $("#scoretotal").html("");
+    finishGame == false;
 }
-
-//$("#modal-finish").modal();
-//openRestartGameModal();
 
 function totalScore() {
     var calcScore = 0;
@@ -118,44 +116,57 @@ function atualizaScoreTotal() {
     }
 }
 
+
 //Iniciando rodada
 function initGame() {
-    $("input[type=checkbox]").prop("disabled", true);
-    $("input[type=checkbox]").hide();
-    $("#btnscore").hide();
-    $("#btn-general").hide();
-    $("#btn-seqb").hide();
-    $("#btn-seqa").hide();
-    $("#btn-fullhouse").hide();
-    $("#btn-quadra").hide();
-    $("#btn-trinca").hide();
-    $("#btn-6").hide();
-    $("#btn-5").hide();
-    $("#btn-4").hide();
-    $("#btn-3").hide();
-    $("#btn-2").hide();
-    $("#btn-1").hide();
-    $("#btnscore").hide();
-    $("#btnscorezero").hide();
-    $("#text-instructions").html("Jogue os dados.");
-    $(".btn .btn-text").html("Jogar dados");
-    $("#botao-jogar").prop("disabled", false);
-    $("#dado-img1").prop("src", "img/general.png");
-    $("#dado-img2").prop("src", "img/general.png");
-    $("#dado-img3").prop("src", "img/general.png");
-    $("#dado-img4").prop("src", "img/general.png");
-    $("#dado-img5").prop("src", "img/general.png");
-    $("input[type=checkbox]").prop("checked", false);
-    $("input[type=checkbox]").parent().removeClass("border-5 border-primary");
-    if (gameRound > 0) {
-        val1 = dado1.Roll();
-        val2 = dado2.Roll();
-        val3 = dado3.Roll();
-        val4 = dado4.Roll();
-        val5 = dado5.Roll();
+    if (finishGame == false) {
+        if (gameRound < 12) {
+            $("#text-instructions").html("Jogue os dados.");
+            $(".btn .btn-text").html("Jogar dados");
+            $("#botao-jogar").prop("disabled", false);
+            finishGame == true;
+        } else {
+            $("#text-instructions").html("Jogo finalizado.");
+            $(".btn .btn-text").html("Jogo finalizado");
+            $("#botao-jogar").prop("disabled", true);
+        }
+        console.log("executou initGame()", gameRound);
+        $("input[type=checkbox]").prop("disabled", true);
+        $("input[type=checkbox]").hide();
+        $("#btnscore").hide();
+        $("#btn-general").hide();
+        $("#btn-seqb").hide();
+        $("#btn-seqa").hide();
+        $("#btn-fullhouse").hide();
+        $("#btn-quadra").hide();
+        $("#btn-trinca").hide();
+        $("#btn-6").hide();
+        $("#btn-5").hide();
+        $("#btn-4").hide();
+        $("#btn-3").hide();
+        $("#btn-2").hide();
+        $("#btn-1").hide();
+        $("#btnscore").hide();
+        $("#btnscorezero").hide();
+        $("#dado-img1").prop("src", "public/general.png");
+        $("#dado-img2").prop("src", "public/general.png");
+        $("#dado-img3").prop("src", "public/general.png");
+        $("#dado-img4").prop("src", "public/general.png");
+        $("#dado-img5").prop("src", "public/general.png");
+        $("input[type=checkbox]").prop("checked", false);
+        $("input[type=checkbox]").parent().removeClass("border-5 border-primary");
+        if (gameRound > 0) {
+            val1 = dado1.Roll();
+            val2 = dado2.Roll();
+            val3 = dado3.Roll();
+            val4 = dado4.Roll();
+            val5 = dado5.Roll();
+        }
+        diceRollChance = 1;
+        gameRound++;
     }
-    diceRollChance = 1;
-    gameRound++;
+
+
 }
 //Removendo as classes de animação para conseguir animar novamente depois
 function removeAnimations() {
@@ -298,7 +309,10 @@ function scoreZero() {
         $("#btnscore").hide();
         $("#btnscorezero").show();
     } else {
-        restartGame();
+        $("#botao-jogar").prop("disabled", true);
+        $("#modal-finish").modal({
+            show: true
+        });
     }
 }
 
@@ -414,9 +428,9 @@ function checkScore() {
     //Exibe o botão de riscar jogada somente se tiver jogadas restantes
     if (sScore1 === true && sScore2 === true && sScore3 === true && sScore4 === true && sScore5 === true && sScore6 === true && sTrinca === true && sQuadra === true && sFullhouse === true && sSeqA === true && sSeqB === true && sGeneral === true && sAleatoria === true) {
         finishGame = true;
+        $("#botao-jogar").prop("disabled", true);
         $("#btnscore").hide();
         $("#btn-zero").hide();
-        restartGame();
     } else {
         finishGame = false;
         $("#btnscore").show();
